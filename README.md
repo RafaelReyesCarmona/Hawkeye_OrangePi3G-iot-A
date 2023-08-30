@@ -13,7 +13,7 @@ If you are running Debian, Ubuntu, Raspbian, or another Debian derivative, you c
 
 If you already have a webcam connected, Hawkeye will start listening on localhost, port 8000. Point your browser to http://localhost:8000/ to view the video stream.
 
-If you want to build Hawkeye from source:
+If you want to build Hawkeye from source log into OrangePi3G-iot-A via ssh or serial conection (/dev/ttyMT0):
 
     sudo apt-get install build-essential checkinstall libv4l-dev libjpeg9-dev git
     git clone https://github.com/RafaelReyesCarmona/hawkeye.git
