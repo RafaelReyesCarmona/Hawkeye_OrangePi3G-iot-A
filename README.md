@@ -1,6 +1,6 @@
-## Hawkeye
+## Hawkeye OrangePi3G-iot-A
 
-Hawkeye is a simple, robust, easy to use USB webcam streaming web server which uses MJPEG as the video codec. It is designed to be usable on local networks as well as the Internet, supporting HTTPS and Basic Authentication. It comes with an HTML video stream viewer optimized for desktop and mobile usage. Lastly, Hawkeye supports multiple webcams.
+Hawkeye is a simple, robust, easy to use USB webcam streaming web server which uses MJPEG as the video codec. It is designed to be usable on local networks as well as the Internet, supporting HTTPS and Basic Authentication. It comes with an HTML video stream viewer optimized for desktop and mobile usage. Lastly, Hawkeye supports multiple webcams. This fork is adapted to install Hawkeye on OrangePi3G-iot-A device running Ubuntu 16.04 server.
 
 Hawkeye was built to work on low power devices such as the Raspberry Pi but will work equally well on desktops and laptops alike. The motivation for it was to create a standard no-surprises daemon with batteries included that would pipe (buffered) MJPEG data from the USB webcam(s) to an HTTP or HTTPS connection with as few delays as possible. The project is similar to, and borrows some code from, mjpeg-streamer but aside from the encoding bits is a separate pure C implementation. This project also includes everything you might need to build a Debian-style package to have hawkeye neatly integrated into your Debian-derived OS, from init files, to dependencies, to log rotation.
 
@@ -8,28 +8,18 @@ Hawkeye was built to work on low power devices such as the Raspberry Pi but will
 
 If you are running Debian, Ubuntu, Raspbian, or another Debian derivative, you can use my package repository as follows:
 
-    sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 2272781B
-    echo "deb http://debs.ridgebit.net/qoSBonHMiqBNAAe5TNm3M0PuZaV91peH/ custom main" | sudo tee /etc/apt/sources.list.d/ridgebit.list
-    sudo apt-get update
-    sudo apt-get install hawkeye
+    wget https://github.com/RafaelReyesCarmona/hawkeye/blob/master/hawkeye_20230830-1_armhf.deb
+    sudo dpkg -i hawkeye_20230830-1_armhf.deb
 
 If you already have a webcam connected, Hawkeye will start listening on localhost, port 8000. Point your browser to http://localhost:8000/ to view the video stream.
 
 If you want to build Hawkeye from source:
 
-    sudo apt-get install build-essential debhelper libv4l-dev libjpeg9-dev libssl-dev git
-    git clone https://github.com/ipartola/hawkeye.git
+    sudo apt-get install build-essential checkinstall libv4l-dev libjpeg9-dev git
+    git clone https://github.com/RafaelReyesCarmona/hawkeye.git
     cd hawkeye/
     make
-    sudo make install
-
-If you want to roll your own .deb package:
-
-    sudo apt-get install build-essential debhelper libv4l-dev libjpeg9-dev libssl-dev git devscripts
-    git clone https://github.com/ipartola/hawkeye.git
-    cd hawkeye/
-    debuild -us -uc -I
-    cd ..
+    sudo checkinstall
 
 ## Configuration
 
